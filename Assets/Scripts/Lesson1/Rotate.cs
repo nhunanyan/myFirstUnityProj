@@ -1,34 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Rotate : MonoBehaviour
 {
-    [SerializeField] float rotateX;
-    [SerializeField] float rotateY;
-    [SerializeField] float rotateZ;
-    
-    void Start()
+    [SerializeField] private Vector3 values;
+
+    private void Update()
     {
-        if(rotateX > 360) {
-            rotateX -= 360;
+        values.x = ArrangeAngle(values.x);
+        values.y = ArrangeAngle(values.y);
+        values.z = ArrangeAngle(values.z);
+        transform.localRotation = Quaternion.Euler(values);
+    }
+    private float ArrangeAngle(float angle, float between = 360f)
+    {
+        float newAngle = angle;
+        if (Math.Abs(newAngle) > between)
+        {
+            return newAngle % between;
         }
-        else if (rotateY > 360) {
-            rotateY -= 360;
-        }
-        else if (rotateZ > 360) {
-            rotateZ -= 360;
-        }
-        else if (rotateY < -360) {
-            rotateY += 360;
-        }
-        else if (rotateZ < -360) {
-            rotateZ += 360;
-        }
-        else if (rotateX < -360) {
-            rotateX += 360;
-        }
-        transform.localRotation = Quaternion.Euler(rotateX, rotateY, rotateZ);
+        return angle;
     }
 
 }
