@@ -3,16 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Base3 : MonoBehaviour
-{
-    [SerializeField] protected Vector3 values;
-    protected float ArrangeAngle(float angle, float between = 360f)
+namespace Lesson2 {
+    public class Base3 : MonoBehaviour
     {
-        float newAngle = angle;
-        if (Math.Abs(newAngle) > between)
-        {
-            return newAngle % between;
+        
+        [SerializeField] protected List<GameObject> rotatableGameObject;
+        private List<IRotator> _rotatobals = new();
+
+        private void Awake() {
+            foreach (GameObject rbo in rotatableGameObject) {
+                IRotator rotator = rbo.GetComponent<IRotator>();
+                _rotatobals.Add(rotator);
+            }
         }
-        return angle;
-    }
+
+        private void Update() {
+            foreach (IRotator rotatoble in _rotatobals) {
+                rotatoble.Rotate();
+            }
+        }
+
+        protected float ArrangeAngle(float angle, float between = 360f)
+        {
+            float newAngle = angle;
+            if (Math.Abs(newAngle) > between)
+            {
+                return newAngle % between;
+            }
+            return angle;
+        }
+}
 }

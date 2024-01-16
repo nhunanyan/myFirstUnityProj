@@ -1,4 +1,0 @@
-interface RotateInterface 
-{
-    void Rotate();
-}

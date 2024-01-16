@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Sphere3 : Base3, RotateInterface
-{
-    public void Rotate() {
-        values.x = ArrangeAngle(values.x);
-        values.y = ArrangeAngle(values.y);
-        values.z = ArrangeAngle(values.z);
-        transform.localRotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, values.z);
-    }
-
-    void Update()
+namespace Lesson2 { 
+    public class Sphere3 : MonoBehaviour, IRotator
     {
-        Rotate();
+        [SerializeField] protected Vector3 values;
+        public void Rotate() {
+            transform.localRotation = Quaternion.Euler(transform.eulerAngles.x.ArrangeAngle(), transform.eulerAngles.y.ArrangeAngle(), values.z.ArrangeAngle());
+        }
+        protected float ArrangeAngle(float angle, float between = 360f)
+    {
+        float newAngle = angle;
+        if (Math.Abs(newAngle) > between)
+        {
+            return newAngle % between;
+        }
+        return angle;
+    }
     }
 }
