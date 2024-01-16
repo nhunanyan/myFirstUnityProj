@@ -6,21 +6,12 @@ namespace Lesson2{
     public abstract class Base1 : MonoBehaviour
     {
         [SerializeField] protected Vector3 values;
-        public abstract void Rotate();
         
+        public abstract void Rotate();
+
         private void Update()
         {
             Rotate();
-        }
-        
-        protected float ArrangeAngle(float angle, float between = 360f)
-        {
-            float newAngle = angle;
-            if (Math.Abs(newAngle) > between)
-            {
-                return newAngle % between;
-            }
-            return angle;
         }
         
     }

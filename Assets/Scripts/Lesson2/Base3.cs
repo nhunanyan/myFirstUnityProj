@@ -22,15 +22,5 @@ namespace Lesson2 {
                 rotatoble.Rotate();
             }
         }
-
-        protected float ArrangeAngle(float angle, float between = 360f)
-        {
-            float newAngle = angle;
-            if (Math.Abs(newAngle) > between)
-            {
-                return newAngle % between;
-            }
-            return angle;
-        }
 }
 }
