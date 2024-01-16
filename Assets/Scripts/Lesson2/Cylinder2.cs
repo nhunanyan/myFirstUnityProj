@@ -9,10 +9,5 @@ namespace Lesson2 {
         {   
             transform.localRotation = Quaternion.Euler(values.x, transform.eulerAngles.y, transform.eulerAngles.z);
         }
-
-        void Update()
-        {
-            Rotate();
-        }
     }
 }

@@ -7,7 +7,8 @@ namespace Lesson2{
     {
         [SerializeField] protected Vector3 values;
         public abstract void Rotate();
-        void Update()
+        
+        private void Update()
         {
             Rotate();
         }

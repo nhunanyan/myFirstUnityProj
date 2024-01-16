@@ -11,14 +11,5 @@ namespace Lesson2 {
         {
             transform.localRotation = Quaternion.Euler(transform.eulerAngles.x.ArrangeAngle(), values.y.ArrangeAngle(), transform.eulerAngles.z.ArrangeAngle());
         }
-        protected float ArrangeAngle(float angle, float between = 360f)
-    {
-        float newAngle = angle;
-        if (Math.Abs(newAngle) > between)
-        {
-            return newAngle % between;
-        }
-        return angle;
-    }
     }
 }
