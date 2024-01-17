@@ -25,7 +25,7 @@ namespace Lesson3
             StartCoroutine(WaitSecond());
             foreach (ILogger logger in _loggers) 
             {
-                logger.Print(DateTime.Now.ToString());
+                logger.Print(logger.GetType().Name + " " +DateTime.Now.ToString());
             }
         }
     }
