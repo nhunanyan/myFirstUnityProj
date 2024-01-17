@@ -7,7 +7,14 @@ namespace Lesson2 {
     {
         public override void Rotate() 
         {   
-            transform.localRotation = Quaternion.Euler(values.x.ArrangeAngle(), transform.eulerAngles.y.ArrangeAngle(), transform.eulerAngles.z.ArrangeAngle());
+            
+            Vector3 targetAngles = new Vector3(values.x.ArrangeAngle(), transform.localRotation.y.ArrangeAngle(), transform.localRotation.z.ArrangeAngle());
+            Quaternion rotation = Quaternion.Euler(targetAngles);
+            transform.localRotation = rotation;
+            
+
+
+            //transform.localRotation = Quaternion.Euler(values.x.ArrangeAngle(), transform.eulerAngles.y.ArrangeAngle(), transform.eulerAngles.z.ArrangeAngle());
         }
     }
 }

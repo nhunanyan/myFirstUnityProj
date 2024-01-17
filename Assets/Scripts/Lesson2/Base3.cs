@@ -6,7 +6,6 @@ using System;
 namespace Lesson2 {
     public class Base3 : MonoBehaviour
     {
-        
         [SerializeField] protected List<GameObject> rotatableGameObject;
         private List<IRotator> _rotatobals = new();
 
@@ -22,5 +21,5 @@ namespace Lesson2 {
                 rotatoble.Rotate();
             }
         }
-}
+    }
 }
