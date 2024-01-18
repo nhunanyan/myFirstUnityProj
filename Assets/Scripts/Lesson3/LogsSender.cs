@@ -25,7 +25,7 @@ namespace Lesson3
             _time = 0;
             foreach (ILogger logger in _loggers) 
             {
-                logger.Print(logger.GetType().Name + " " +DateTime.Now.ToString());
+                logger.Print(logger.GetType().Name + " " + DateTime.Now.ToString());
             }
         }
     }

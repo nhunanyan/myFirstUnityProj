@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Lesson3 
@@ -11,9 +10,11 @@ namespace Lesson3
         {
             Debug.Log(log);
         }
+
         private void Awake ()
         {
             _logSender.Register(this);
+            
         }
     }
 }

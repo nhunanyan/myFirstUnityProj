@@ -9,7 +9,6 @@ namespace Lesson3
     { 
         [SerializeField] private TMP_Text text;
         [SerializeField] private LogsSender _logSender;
-        private String newText;
 
         public void Print (string log) {
             text.text = text.text + "\n" + log;
