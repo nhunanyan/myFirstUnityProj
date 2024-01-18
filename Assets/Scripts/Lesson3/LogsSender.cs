@@ -8,21 +8,21 @@ namespace Lesson3
     public class LogsSender : MonoBehaviour
     {
         private List<ILogger> _loggers = new ();
+        private float _time;
 
         public void Register(ILogger logger) 
         {
-            Debug.Log("i want register");
             _loggers.Add(logger);
-        }
-
-        private IEnumerator WaitSecond () 
-        {
-            yield return new WaitForSeconds(1);
         }
 
         private void Update ()
         {
-            StartCoroutine(WaitSecond());
+            _time += Time.deltaTime;
+            if (_time < 1) 
+            {
+                return;
+            }
+            _time = 0;
             foreach (ILogger logger in _loggers) 
             {
                 logger.Print(logger.GetType().Name + " " +DateTime.Now.ToString());
