@@ -45,8 +45,7 @@ namespace Lesson5
                     _timer = new Timer(deley);
                     RegistorTimer(_timer);
 
-                };
-
+            };
         }
     }
 }
