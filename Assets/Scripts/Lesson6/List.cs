@@ -5,16 +5,21 @@ namespace Lesson6
 {
     public class List<T>
     {
+        const int defaultArraySize = 4;
         private T[] _array;
-
         public int Capacity => _array.Length;
         public int Count { get; private set; }
 
         public List(int capacity = 0)
         {
+            if (capacity < 0)
+            {
+                Debug.Log("The capacity of an array cannot be negative.");
+                return;
+            }
             if (capacity == 0)
             {
-                capacity = 4;
+                capacity = defaultArraySize;
             }
             _array = new T[capacity];
             Count = 0;
@@ -24,7 +29,7 @@ namespace Lesson6
         {
             get
             {
-                if (index < 0 || index > Count)
+                if (index < 0 || index >= Count)
                 {
                     Debug.Log("There is not an element at that index!");
                 }
@@ -33,7 +38,7 @@ namespace Lesson6
 
             set
             {
-                if (index < 0 || index > Count)
+                if (index < 0 || index >= Count)
                 {
                     Debug.Log("There is not an element at that index!");
                 }
@@ -67,15 +72,8 @@ namespace Lesson6
                 if (!EqualityComparer<T>.Default.Equals(_array[i], element)) continue;
                 index = i;
                 found = true;
-                //Count--;
                 break;
             }
-            /*
-            for (int i = index; i < Count; ++i){
-                _array[i] = _array[i+1];
-            }
-            return found;
-            */
             found = RemoveAt(index);
             return found;
         }
@@ -108,8 +106,6 @@ namespace Lesson6
             {
                 Add(list[i]);
             }
-
-            Debug.Log("__________");
             for (int i = 0; i < _newArray.Length; ++i)
             {
                 Add(_newArray[i]);
@@ -123,7 +119,7 @@ namespace Lesson6
                 Debug.Log("Reange out of ");
                 return false;
             }
-            var _newArray = new T [Count - to - 1];  
+            var _newArray = new T[Count - to - 1];
             for (int i = to + 1; i < Count; ++i)
             {
                 _newArray[i - to - 1] = _array[i];
@@ -132,7 +128,7 @@ namespace Lesson6
             for (int i = 0; i < _newArray.Length; ++i)
             {
                 Add(_newArray[i]);
-            }          
+            }
             return true;
         }
 
