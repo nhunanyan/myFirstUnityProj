@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections;
 
 namespace Lesson6
 {
-    public class List<T>
+    public class List<T> : IEnumerable
     {
         const int defaultArraySize = 4;
         private T[] _array;
@@ -138,5 +140,95 @@ namespace Lesson6
             Count = 0;
             _array = _newArray;
         }
+
+        public void Resize(T element)
+        {
+            if(Count == Capacity)
+            {
+                Array.Resize<T>(ref _array, Capacity * 2);
+            }
+            _array[Count] = element;
+            Count++;
+        }
+
+        public void Copy(T element)
+        {
+            if(Count == Capacity)
+            {
+                var newArray = new T[Capacity *2 ];
+                Array.Copy(newArray, _array, Capacity);
+                _array = newArray;
+            }
+            _array[Count] = element;
+            Count++;   
+        }
+
+        public class ForwardIterator : IEnumerator, IEnumerator<T>
+        {
+            private List<T> _list;
+            private int _index = -1;
+            private T _item;
+
+            public object Current => _list[_index];
+
+            T IEnumerator<T>.Current => _item;
+
+            public ForwardIterator (List<T> list)
+            {
+                _list = list;
+            } 
+
+            public void Reset ()
+            {
+                _index = -1;
+            }
+
+            public bool MoveNext ()
+            {
+                if (_index >= _list.Capacity - 1) return false;
+                _index++;
+                return true;
+            }
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+
+        }
+
+        public class BackwardIterator : IEnumerator, IEnumerator<T>
+        {
+            private List<T> _list;
+            private int _index;
+            private T _item;
+
+            public object Current => _list[_index];
+
+            T IEnumerator<T>.Current => _item;
+
+            public void Reset ()
+            {
+                _index = _list.Count - 1;
+            }
+
+            public bool MoveNext ()
+            {
+                if (_index < 0) return false;
+                _index--;
+                return true;
+            }
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new ForwardIterator(this);
+        }
+
     }
 }
