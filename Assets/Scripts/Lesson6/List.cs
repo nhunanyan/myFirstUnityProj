@@ -185,7 +185,7 @@ namespace Lesson6
 
             public bool MoveNext ()
             {
-                if (_index >= _list.Capacity - 1) return false;
+                if (_index >= _list.Count - 1) return false;
                 _index++;
                 return true;
             }
@@ -209,7 +209,7 @@ namespace Lesson6
 
             public void Reset ()
             {
-                _index = _list.Count - 1;
+                _index = _list.Count;
             }
 
             public bool MoveNext ()
