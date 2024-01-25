@@ -78,11 +78,35 @@ public class Expression
         return MathF.Abs(2 * x + MathF.Pow(x, 3));
     }
 
-    public void Exp (float start, float end, float delta) 
+    public void Calculate6 (float start, float end, float delta) 
     {
         for (float x = start; x <= end; x+=delta)
         {
             Console.WriteLine("x = " + x + " y = " + Exp6(x));
+        }
+    }
+
+    public void Calculate7 (float start, float end, float delta) 
+    {
+        for (float x = start; x <= end; x+=delta)
+        {
+            Console.WriteLine("x = " + x + " y = " + Exp7(x));
+        }
+    }
+
+    public void Calculate8 (float start, float end, float delta) 
+    {
+        for (float x = start; x <= end; x+=delta)
+        {
+            Console.WriteLine("x = " + x + " y = " + Exp8(x));
+        }
+    }
+
+    public void Calculate9 (float start, float end, float delta) 
+    {
+        for (float x = start; x <= end; x+=delta)
+        {
+            Console.WriteLine("x = " + x + " y = " + Exp9(x));
         }
     }
 }
