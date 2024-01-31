@@ -141,6 +141,12 @@ namespace Lesson6
             _array = _newArray;
         }
 
+        public bool IsEmpty ()
+        {
+            if (Count == 0) return true;
+            return false;          
+        }
+
         public void Resize(T element)
         {
             if(Count == Capacity)
@@ -206,6 +212,11 @@ namespace Lesson6
             public object Current => _list[_index];
 
             T IEnumerator<T>.Current => _item;
+
+            public BackwardIterator (List<T> list)
+            {
+                _list = list;
+            }
 
             public void Reset ()
             {
